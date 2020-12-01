@@ -11,7 +11,7 @@ input_data = parseNumList('input.txt')
 
 def part_one(input, target):
     for n in input:
-        if (target - n) in input:
+        if (target - n) in input: # If 2020 minus $number is in the input, we found the missing part
             return n*(target-n)
 
 
