@@ -1,0 +1,26 @@
+target = 2020
+
+
+def parseNumList(filename):
+    with open(filename, 'r') as file:
+        return [int(x) for x in file.read().split('\n')]
+
+
+input_data = parseNumList('input.txt')
+
+
+def part_one(input, target):
+    for n in input:
+        if (target - n) in input:
+            return n*(target-n)
+
+
+def part_two(input, target):
+    for n in input:
+        b = part_one(input, target - n)
+        if b:
+            return n*b
+
+
+print("Part 1: ", part_one(input_data, target))
+print("Part 2: ", part_two(input_data, target))
