@@ -8,7 +8,7 @@ def parseInputLine(in_line):
     return out
 
 
-def parseNumList(filename):
+def parse_pw_data(filename):
     with open(filename, 'r') as file:
         return [parseInputLine(x) for x in file.read().rstrip('\n').split('\n')]
 
@@ -28,7 +28,7 @@ def part_two(in_d):
     return True if bool(in_d["pass"][in_d["min"]+o] == in_d["char"]) ^ bool(in_d["pass"][in_d["max"]+o] == in_d["char"]) else False
 
 
-input_data = parseNumList('input.txt')
+input_data = parse_pw_data('input.txt')
 p1_c = 0
 p2_c = 0
 
