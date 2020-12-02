@@ -1,4 +1,4 @@
-def parseInputLine(in_line):
+def line_to_in(in_line):
     out = {}
     in_line = in_line.split(" ")
     out["min"] = int(in_line[0].split("-")[0])
@@ -10,7 +10,7 @@ def parseInputLine(in_line):
 
 def parse_pw_data(filename):
     with open(filename, 'r') as file:
-        return [parseInputLine(line) for line in file]
+        return [line_to_in(line) for line in file]
 
 
 def part_one(in_d):
