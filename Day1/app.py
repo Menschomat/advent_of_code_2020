@@ -3,7 +3,7 @@ target = 2020
 
 def parseNumList(filename):
     with open(filename, 'r') as file:
-        return [int(x) for x in file.read().split('\n')]
+        return [int(line) for line in file]
 
 
 input_data = parseNumList('input.txt')
@@ -11,7 +11,7 @@ input_data = parseNumList('input.txt')
 
 def part_one(input, target):
     for n in input:
-        if (target - n) in input: # If 2020 minus $number is in the input, we found the missing part
+        if (target - n) in input:  # If 2020 minus $number is in the input, we found the missing part
             return n*(target-n)
 
 

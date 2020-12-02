@@ -10,7 +10,7 @@ def parseInputLine(in_line):
 
 def parse_pw_data(filename):
     with open(filename, 'r') as file:
-        return [parseInputLine(x) for x in file.read().rstrip('\n').split('\n')]
+        return [parseInputLine(line) for line in file]
 
 
 def part_one(in_d):
@@ -24,8 +24,8 @@ def part_one(in_d):
 
 
 def part_two(in_d):
-    o = -1  # Toboggan Corporate Policies have no concept of "index zero"!
-    return True if bool(in_d["pass"][in_d["min"]+o] == in_d["char"]) ^ bool(in_d["pass"][in_d["max"]+o] == in_d["char"]) else False
+    o = 1  # Toboggan Corporate Policies have no concept of "index zero"!
+    return True if (in_d["pass"][in_d["min"]-o] == in_d["char"]) is not (in_d["pass"][in_d["max"]-o] == in_d["char"]) else False
 
 
 input_data = parse_pw_data('input.txt')
