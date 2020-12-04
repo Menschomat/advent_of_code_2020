@@ -25,7 +25,7 @@ def check_pass_for_hgt(passport):
     return False
 
 def check_pass_for_hcl(passport):
-    return True if re.compile(r'^#\w\w\w\w\w\w$').match(passport['hcl']) else False
+    return True if re.compile(r'^#\w{6}$').match(passport['hcl']) else False
 
 def check_pass_for_ecl(passport):
     check_list = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
