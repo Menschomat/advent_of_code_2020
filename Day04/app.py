@@ -1,11 +1,5 @@
 import re
 
-to_check = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]  # cid is optional
-with open('input.txt') as file:
-    passports = [{item.split(":")[0]:item.split(":")[1] for item in x.replace(
-        "\n", " ").split(" ") if len(item.split(":")) > 1} for x in file.read().split("\n\n")]
-
-
 def is_digit_in_range(in_str, span):
     return True if in_str.isdigit() and span[0] <= int(in_str) <= span[1] else False
 
@@ -35,6 +29,12 @@ def check_pass(passport, to_check):
         and check_pass_for_ecl(passport) \
         and check_pass_for_hcl(passport) \
         and check_pass_for_hgt(passport) else False
+
+to_check = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]  # cid is optional
+
+with open('input.txt') as file:
+    passports = [{item.split(":")[0]:item.split(":")[1] for item in x.replace(
+        "\n", " ").split(" ") if len(item.split(":")) > 1} for x in file.read().split("\n\n")]
 
 prat_one = len(list(filter(lambda d: all(elem in d.keys() for elem in to_check), passports)))
 prat_two = len(list(filter(lambda d: check_pass(d, to_check), passports)))
