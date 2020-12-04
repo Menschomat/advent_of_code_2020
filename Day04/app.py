@@ -13,9 +13,9 @@ def is_digit_with_len(in_str, t_len):
     return True if len(in_str) is t_len and in_str.isdigit() else False
 
 def check_pass_for_hgt(passport):
-    if re.compile(r'^\w*cm$').match(passport['hgt']):
+    if re.compile(r'^\d{3}cm$').match(passport['hgt']):
         return True if 150 <= int(passport['hgt'].replace("cm", "")) <= 193 else False
-    elif re.compile(r'^\w*in$').match(passport['hgt']):
+    elif re.compile(r'^\d{2,3}in$').match(passport['hgt']):
         return True if 59 <= int(passport['hgt'].replace("in", "")) <= 76 else False
     return False
 
