@@ -5,17 +5,12 @@ with open('input.txt') as file:
     passports = [{item.split(":")[0]:item.split(":")[1] for item in x.replace(
         "\n", " ").split(" ") if len(item.split(":")) > 1} for x in file.read().split("\n\n")]
 
-def str_dig_len_check(t_len, in_str):
+
+def is_digit_in_range(in_str, span):
+    return True if in_str.isdigit() and span[0] <= int(in_str) <= span[1] else False
+
+def is_digit_with_len(in_str, t_len):
     return True if len(in_str) is t_len and in_str.isdigit() else False
-
-def check_pass_for_byr(passport):
-    return True if str_dig_len_check(4, passport['byr']) and 1920 <= int(passport['byr']) <= 2002 else False
-
-def check_pass_for_iyr(passport):
-    return True if str_dig_len_check(4, passport['iyr']) and 2010 <= int(passport['iyr']) <= 2020 else False
-
-def check_pass_for_eyr(passport):
-    return True if str_dig_len_check(4, passport['eyr']) and 2020 <= int(passport['eyr']) <= 2030 else False
 
 def check_pass_for_hgt(passport):
     if re.compile(r'^\w*cm$').match(passport['hgt']):
@@ -31,15 +26,12 @@ def check_pass_for_ecl(passport):
     check_list = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
     return True if passport['ecl'] in check_list else False
 
-def check_pass_for_pid(passport):
-    return True if str_dig_len_check(9, passport['pid']) else False
-
 def check_pass(passport, to_check):
     return True if all(elem in passport.keys() for elem in to_check) \
-        and check_pass_for_byr(passport) \
-        and check_pass_for_iyr(passport) \
-        and check_pass_for_eyr(passport) \
-        and check_pass_for_pid(passport) \
+        and is_digit_in_range(passport['byr'], (1920, 2002)) \
+        and is_digit_in_range(passport['iyr'], (2010, 2020)) \
+        and is_digit_in_range(passport['eyr'], (2020, 2030)) \
+        and is_digit_with_len(passport['pid'], 9)  \
         and check_pass_for_ecl(passport) \
         and check_pass_for_hcl(passport) \
         and check_pass_for_hgt(passport) else False
