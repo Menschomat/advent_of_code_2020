@@ -6,10 +6,6 @@ plane_col_max = 7
 plane_row_max = 127
 
 
-def split_row_col(in_str):
-    return (in_str[:7], in_str[7:])
-
-
 def to_int(in_num):
     return int(decimal.Decimal(in_num).to_integral_value())
 
@@ -30,7 +26,7 @@ def calc_id(row, col):
 
 def part_one(file_path):
     with open(file_path) as file:
-        return sorted([calc_id(calc_pos(split_row_col(f)[0], plane_row_max, 'B', 'F'), calc_pos(split_row_col(f)[1], plane_col_max, 'R', 'L')) for f in file])
+        return sorted([calc_id(calc_pos(f[:7], plane_row_max, 'B', 'F'), calc_pos(f[7:], plane_col_max, 'R', 'L')) for f in file])
 
 
 def part_two(p1_out):
