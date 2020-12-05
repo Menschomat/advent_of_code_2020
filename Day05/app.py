@@ -30,9 +30,7 @@ def part_one(file_path):
 
 
 def part_two(p1_out):
-    compare = []
-    compare.extend(range(p1_out[0], p1_out[-1]))
-    return set(compare) - set(p1_out)
+    return set(range(p1_out[0], p1_out[-1])) - set(p1_out)
 
 
 p1_out = part_one(input_file)
