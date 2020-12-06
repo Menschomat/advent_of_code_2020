@@ -1,7 +1,7 @@
 from functools import reduce
 
-def part_one(str_list):
-  return len(reduce(set.union, str_list))
+def part_one(set_list):
+  return len(reduce(set.union, set_list))
 
 def part_two(set_list):
   return len(reduce(set.intersection, set_list))
