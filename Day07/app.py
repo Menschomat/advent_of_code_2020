@@ -14,7 +14,6 @@ def part_one(in_dict, search_str):
         if search_str in colors:
             out_set.add(bag)
             out_set.update(part_one(in_dict, bag))
-    {bag: colors for bag, colors in rule_dict.items() if search_str in colors.keys()}
     return out_set
 
 def part_two(in_dict, search_str):
