@@ -6,7 +6,8 @@ def parse_input_line(in_str):
         return {x[1]: int(x[0]) for x in re.findall(regex, contain_str)}
 
     regex = r"^(.*) bags contain (.*)."
-    return re.search(regex, in_str).group(1), parse_contain(re.search(regex, in_str).group(2))
+    regex_res = re.search(regex, in_str)
+    return regex_res.group(1), parse_contain(regex_res.group(2))
 
 def part_one(in_dict, search_str):
     out_set = set()
