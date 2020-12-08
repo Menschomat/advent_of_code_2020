@@ -17,17 +17,18 @@ def accumulator(in_data):
 
 def part_one(in_data):
     return accumulator(in_data)
-    
+
 def part_two(in_data):
-    def modify_in_data(in_data, idx):
+    swap = {"nop": "jmp", "jmp": "nop"}
+    def modify_in_data(swap,in_data, idx):
         n_in_data = in_data.copy()
-        n_in_data[idx] = ({"nop": "jmp", "jmp": "nop"}[n_in_data[idx][0]],n_in_data[idx][1])
+        n_in_data[idx] = (swap[n_in_data[idx][0]],n_in_data[idx][1])
         return n_in_data
 
     # Do a run to find potential swap-candidates:
-    acc_jmp = [i for i in accumulator(in_data)['positions'] if in_data[i][0] == "nop" or in_data[i][0] == "jmp"]
+    acc_jmp = [i for i in accumulator(in_data)['positions'] if in_data[i][0] in swap.keys()]
     for i in acc_jmp:
-        out = accumulator(modify_in_data(in_data, i))
+        out = accumulator(modify_in_data(swap, in_data, i))
         if out['terminated'] is True:
             return out
 
