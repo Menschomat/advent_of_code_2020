@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 def accumulator(in_data):
     done = []
     acc = 0
@@ -19,11 +17,11 @@ def accumulator(in_data):
 
 def part_one(in_data):
     return accumulator(in_data)
-
+    
 def part_two(in_data):
     def modify_in_data(in_data, idx):
-        n_in_data = deepcopy(in_data)
-        n_in_data[idx][0] = {"nop": "jmp", "jmp": "nop"}[n_in_data[idx][0]]
+        n_in_data = in_data.copy()
+        n_in_data[idx] = ({"nop": "jmp", "jmp": "nop"}[n_in_data[idx][0]],n_in_data[idx][1])
         return n_in_data
 
     # Do a run to find potential swap-candidates:
@@ -34,6 +32,6 @@ def part_two(in_data):
             return out
 
 with open('input.txt') as file:
-    in_data = [[line.split(" ")[0], int(line.split(" ")[1])]for line in file.read().split('\n')]
+    in_data = [(op,int(arg)) for op, arg in (line.split() for line in file)]
 
 print('Part1: ', part_one(in_data)['acc'], ' - Part2: ', part_two(in_data)['acc'])
