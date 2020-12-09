@@ -11,7 +11,7 @@ def find_wrong_number(in_data, back_look=25):
 
 def find_encryption_weakness(in_data, invalid_val):
     for l in range(2, len(in_data)):
-        for i in range(len(in_data)):
+        for i in range(len(in_data)-l):
             if sum(in_data[i:i+l]) == invalid_val:
                 return min(in_data[i:i+l]) + max(in_data[i:i+l])
 
