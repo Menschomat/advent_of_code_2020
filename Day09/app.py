@@ -2,7 +2,6 @@ def check_in_range(watch_list, val):
     for i in watch_list:
         if val-i in watch_list:
             return True
-    return False
 
 def find_wrong_number(in_data, back_look=25):
     for cursor in range(back_look, len(in_data)):
